@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% from "components/macros.html" import cta_button %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="home">
+    <section class="home__hero">
+        <div class="hero__left">
+            <h1>
+                Did you ever wonder...
+            </h1>
+            <h2> "Which pokemon could I beat?"" </h2>
+            <p>
+                Now you can find out which pokemons you could beat, based on your athletic skill set.
+            </p>
+
+            {{ cta_button('btn--large') }}
+
+        </div>
+        <div class="hero__right">
+            <img src="{{ url_for('static', filename='images/pokemon2.png') }}" alt="ol" class="hero__img">
+        </div>
+    </section>
+
+    <section class="home__info">
+        <h2 class="home__title">
+            Usain Bolt VS. Zeraora
+        </h2>
+        <div>
+            <div class="hero_right">
+                <h3>Usain Bolt</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                    iusto
+                    maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                    iusto
+                    maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                    <br><br>
+
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut distinctio eaque esse
+                    iusto
+                    maiores minima mollitia nisi non omnis pariatur quos repellat tempore, veritatis vero.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, dolorum.
+
+                </p>
+            </div class="hero__left">
+            <img src="{{ url_for('static', filename='images/usain.jpg') }}" alt="produce" class="hero__img__small">
+        </div>
+
+    </section>
+</div>
+{% endblock %}

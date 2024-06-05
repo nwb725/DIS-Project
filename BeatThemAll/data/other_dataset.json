@@ -1,0 +1,34 @@
+[
+    {
+        "sport": "Soccer",
+        "detail": "Soccer detail 1"
+    },
+    {
+        "sport": "Soccer",
+        "detail": "Soccer detail 2"
+    },
+    {
+        "sport": "Basketball",
+        "detail": "Basketball detail 1"
+    },
+    {
+        "sport": "Basketball",
+        "detail": "Basketball detail 2"
+    },
+    {
+        "sport": "Baseball",
+        "detail": "Baseball detail 1"
+    },
+    {
+        "sport": "Tennis",
+        "detail": "Tennis detail 1"
+    },
+    {
+        "sport": "Football",
+        "detail": "Football detail 1"
+    },
+    {
+        "sport": "Hockey",
+        "detail": "Hockey detail 1"
+    }
+]

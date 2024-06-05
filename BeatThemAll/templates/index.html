@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sports Search App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sports Search</h1>
+        <form id="search-form">
+            <input type="text" id="search-query" placeholder="Search for a sport...">
+            <button type="submit">Search</button>
+        </form>
+        <div id="message"></div>
+        <div id="sport-details"></div>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            let query = document.getElementById('search-query').value;
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: query }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let messageDiv = document.getElementById('message');
+                    let detailsDiv = document.getElementById('sport-details');
+                    detailsDiv.innerHTML = '';
+                    if (data.found) {
+                        messageDiv.innerText = 'Sport found';
+                        let sport = data.matched_sport;
+                        for (let key in sport) {
+                            if (sport.hasOwnProperty(key) && key !== 'SPORT') {
+                                let entryDiv = document.createElement('div');
+                                entryDiv.innerText = `${key}: ${sport[key]}`;
+                                detailsDiv.appendChild(entryDiv);
+                            }
+                        }
+                    } else {
+                        messageDiv.innerText = 'Sport not found';
+                    }
+                });
+        });
+    </script>
+</body>
+
+</html>
