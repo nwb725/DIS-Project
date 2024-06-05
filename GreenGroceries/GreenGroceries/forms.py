@@ -60,7 +60,7 @@ class FilterProduceForm(FlaskForm):
                        choices=ProduceItemChoices.choices())
     variety = SelectField('Variety',
                           choices=ProduceVarietyChoices.choices())
-    sold_by = StringField('Sold by')
+    enter_sport = StringField('Enter Sport')
     price = FloatField('Price (lower than or equal to)',
                        validators=[NumberRange(min=0, max=100)])
 

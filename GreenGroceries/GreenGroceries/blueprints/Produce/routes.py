@@ -33,7 +33,7 @@ def produce():
             category=request.form.get("category"),
             item=request.form.get("item"),
             variety=request.form.get("variety"),
-            farmer_name=request.form.get("sold_by"),
+            farmer_name=request.form.get("enter_sport"),
             price=request.form.get("price"),
         )
         title = f'Our {request.form.get("category")}!'

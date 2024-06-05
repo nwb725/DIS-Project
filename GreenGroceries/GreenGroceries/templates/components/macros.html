@@ -25,7 +25,7 @@
 {% endmacro %}
 
 
-{% macro filter_produce_form (form=None, sold_by=True) %}
+{% macro filter_produce_form (form=None, enter_sport=True) %}
 <form method="POST">
     {{ form.hidden_tag() }}
 
@@ -47,10 +47,10 @@
     </div>
 
     <div class="form--row">
-        {% if sold_by %}
+        {% if enter_sport %}
         <div class="form-group">
-            {{ form.sold_by.label }}
-            {{ form.sold_by }}
+            {{ form.enter_sport.label }}
+            {{ form.enter_sport }}
         </div>
         {% endif %}
 

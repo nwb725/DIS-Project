@@ -11,7 +11,7 @@
 
 {% block content %}
     <h2>View and manage your produce</h2>
-    {{ filter_produce_form(form=form, sold_by=False) }}
+    {{ filter_produce_form(form=form, enter_sport=False) }}
     <div class="produce">
     {% if produce|length %}
         {% for product in produce %}
