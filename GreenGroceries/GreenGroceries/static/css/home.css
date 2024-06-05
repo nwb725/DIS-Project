@@ -35,9 +35,8 @@
 }
 
 .home .hero__img__small {
-    width: 25%;
+    width: 50%; /* Adjust size as needed */
     box-shadow: var(--box-shadow-depth);
-    float: left;
 }
 
 .home__info {
@@ -49,34 +48,39 @@
     margin: var(--margin-xl) auto;
 }
 
-.home__info>div {
+.info__item {
     display: flex;
-    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+    align-items: center;
     margin: var(--margin-xxl) 0;
-    gap: var(--margin-xl);
-    justify-content: start;
+    gap: var(--margin-md); /* Adjust gap to control spacing */
 }
 
-.home__info>div:nth-child(odd) {
-    flex-direction: row-reverse;
-    justify-content: end;
-}
-
-.home__info img:not(.icon) {
-    flex: 50% 0 0;
-    max-width: 50%;
-    box-shadow: var(--box-shadow-depth);
-}
-
-.home__info .info__text {
-    flex: 45% 0 0;
-    max-width: 45%;
-}
-
-.home__info .info__text p {
-    padding-inline: var(--margin-xl);
-    padding-left: 0;
+.info__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: var(--margin-md);
+}
+
+.info__item img {
+    width: 50%; /* Adjust size as needed */
+    box-shadow: var(--box-shadow-depth);
+    margin-bottom: var(--margin-md);
+}
+
+.info__item .info__text {
+    text-align: center;
+}
+
+.info__item .info__text h3 {
+    margin: 0; /* Remove margin for these h3 elements */
+    padding: 0; /* Remove padding for these h3 elements */
+}
+
+.info__name {
+    margin: 0; /* Remove margin for Usain Bolt h3 */
+    padding: 0; /* Remove padding for Usain Bolt h3 */
 }
 
 .home__info h3 {
