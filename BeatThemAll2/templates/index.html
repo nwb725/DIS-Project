@@ -35,15 +35,22 @@
             </li>
         </ul>
         <h2>Pokemons you could beat:</h2>
-        <p>You can beat {{ pokemons_you_can_beat | length }} out of 898 Pokémon ({{ percentage_beatable |
-            round(2) }}%)
+        <p>You can beat {{ pokemons_you_can_beat | length }} out of 898 Pokémon ({{ percentage_beatable | round(2) }}%)
         </p>
         <ul class="pokemon-list">
             {% for pokemon in pokemons_you_can_beat %}
-            <li>
-                <img src="{{ url_for('static', filename='pokemon_images/' ~ pokemon.lower() ~ '.png') }}"
-                    alt="{{ pokemon }}" width="100">
-                <div class="pokemon-name">{{ pokemon }}</div>
+            <li class="pokemon-item" data-speed="{{ pokemon.speed }}" data-attack="{{ pokemon.attack }}"
+                data-defense="{{ pokemon.defense }}" style="position: relative">
+                <img src="{{ url_for('static', filename='pokemon_images/' ~ pokemon.name.lower() ~ '.png') }}"
+                    alt="{{ pokemon.name }}" width="100">
+                <div class="pokemon-name">{{ pokemon.name }}</div>
+                <div class="tooltip">
+                    <ul>
+                        <li>Speed: {{ pokemon.speed }} %</li>
+                        <li>Attack: {{ pokemon.attack }} %</li>
+                        <li>Defense: {{ pokemon.defense }} %</li>
+                    </ul>
+                </div>
             </li>
             {% endfor %}
         </ul>
@@ -51,6 +58,7 @@
         <p>No stats found for the sport "{{ request.form.sport }}"</p>
         {% endif %}
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>

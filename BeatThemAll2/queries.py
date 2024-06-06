@@ -1,4 +1,7 @@
-import psycopg2
+import psycopg2, os
+from BeatThemAll2.load_data import DB_HOST, DB_NAME, DB_USER, DB_PASS
+
+POKEMON_IMAGES_DIR = "static/pokemon_images"
 
 
 def get_sport_stats(sport):
@@ -46,7 +49,14 @@ def get_pokemons_you_can_beat(sport_stats):
             if conditions_met >= 2:
                 image_filename = pokemon_name.lower() + ".png"
                 if os.path.exists(os.path.join(POKEMON_IMAGES_DIR, image_filename)):
-                    pokemons_you_can_beat.append(pokemon_name)
+                    pokemons_you_can_beat.append(
+                        {
+                            "name": pokemon_name,
+                            "speed": p_speed,
+                            "attack": attack,
+                            "defense": defense,
+                        }
+                    )
         return pokemons_you_can_beat
     except Exception as e:
         print(f"Error fetching data: {e}")
