@@ -22,7 +22,7 @@
         document.getElementById('search-form').addEventListener('submit', function (event) {
             event.preventDefault();
             let query = document.getElementById('search-query').value;
-            fetch('/search', {
+            fetch('/sport-stats', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

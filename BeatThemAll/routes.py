@@ -1,23 +1,31 @@
-from flask import render_template, request, jsonify
+from flask import flash, render_template, request, jsonify
+from BeatThemAll.forms import SportStatsForm
 from app import app
-from app.queries import search_sport, get_sport_details
+from queries import get_sport_stats, search_sport, get_sport_details
 
 
 @app.route("/")
+def home():
+    return render_template("home.html")
+
+
+@app.route("/temp")
 def index():
     return render_template("index.html")
 
 
-@app.route("/search", methods=["POST"])
-def search():
-    data = request.get_json()
-    query = data.get("query", "")
-    if not isinstance(query, str):
-        return jsonify({"found": False, "matched_sport": None})
-
-    matched_sport = search_sport(query)
-    found = matched_sport is not None
-    return jsonify({"found": found, "matched_sport": matched_sport})
+@app.route('/sport-stats', methods=['GET', 'POST'])
+def sport_stats():
+    # Hvor får man dataen fra?!?!
+    form = SportStatsForm()
+    #if form.validate_on_submit():
+    sport_name = form.sport_name.data
+    print(sport_name)
+        
+    sport_details = get_sport_stats(sport_name)
+    print("now")
+    print(sport_details)
+    return render_template('sport_stats.html', form=form, sport_details=None)
 
 
 @app.route("/query_sport", methods=["POST"])

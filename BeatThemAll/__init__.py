@@ -18,4 +18,4 @@ conn = psycopg2.connect(
 
 db_cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-from app import routes
+import routes
