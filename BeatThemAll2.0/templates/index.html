@@ -4,31 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Pokemon test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <h1>Search for a sport to find out which Pokemons you could beat </h1>
-    <form method="POST">
-        <label for="sport">Sport:</label>
-        <input type="text" id="sport" name="sport" required>
-        <button type="submit">Search</button>
-    </form>
-    {% if sport_stats %}
-    <h2>Your stats for {{ request.form.sport }} :</h2>
-    <ul>
-        <li>Speed: {{ sport_stats.speed }} %</li>
-        <li>Strength: {{ sport_stats.strength }} %</li>
-        <li>Durability: {{ sport_stats.durability }} %</li>
-    </ul>
-    <h2>Pokemons you could beat:</h2>
-    <ul>
-        {% for pokemon in pokemons_you_can_beat %}
-        <li>{{ pokemon }}</li>
-        {% endfor %}
-    </ul>
-    {% elif sport_stats is none %}
-    <p>No stats found for the sport "{{ request.form.sport }}"</p>
-    {% endif %}
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/beatemall.jpg') }}" alt="Beat Them All" class="container">
+        <h1>Find out which Pokemons you can beat!</h1>
+        <p> Based on your athletic skill set, you can find out which Pokemons you can beat. Do you have the speed,
+            strength and durability it takes to beat them all?
+        </p>
+        <p>
+            Enter a sport to find out!
+        </p>
+        <form method="POST">
+            <input type="text" id="sport" name="sport" placeholder="fx. Bowling" required>
+            <button type="submit">Search</button>
+        </form>
+        {% if sport_stats %}
+        <h2>Your stats for {{ request.form.sport }}:</h2>
+        <ul>
+            <li>
+                Speed: {{ sport_stats.speed }} %
+            </li>
+            <li>
+                Strength: {{ sport_stats.strength }} %
+            </li>
+            <li>
+                Durability: {{ sport_stats.durability }} %
+            </li>
+        </ul>
+        <h2>Pokemons you could beat:</h2>
+        <p>You can beat {{ pokemons_you_can_beat | length }} out of 898 Pokémon ({{ percentage_beatable |
+            round(2) }}%)
+        </p>
+        <ul class="pokemon-list">
+            {% for pokemon in pokemons_you_can_beat %}
+            <li>
+                <img src="{{ url_for('static', filename='pokemon_images/' ~ pokemon.lower() ~ '.png') }}"
+                    alt="{{ pokemon }}" width="100">
+                <div class="pokemon-name">{{ pokemon }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% elif sport_stats is none %}
+        <p>No stats found for the sport "{{ request.form.sport }}"</p>
+        {% endif %}
+    </div>
 </body>
 
 </html>

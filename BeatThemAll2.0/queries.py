@@ -1,41 +1,4 @@
-from flask import Flask, request, render_template
 import psycopg2
-import os
-import re
-
-app = Flask(__name__)
-
-DB_HOST = "localhost"
-DB_NAME = "BeatThemAll"
-DB_USER = "postgres"
-DB_PASS = "postgres"
-
-POKEMON_IMAGES_DIR = "static/pokemon_images"
-
-
-@app.route("/", methods=["GET", "POST"])
-def index():
-    sport_stats = None
-    pokemons_you_can_beat = []
-    if request.method == "POST":
-        sport = request.form["sport"]
-        if not re.match(r'[A-Z][a-z]+(:\s[A-Z][a-z]+)*', sport):
-            sport = ' '.join(word.capitalize() for word in sport.split())
-        print(f"Searching for sport: {sport}")
-        sport_stats = get_sport_stats(sport)
-        if sport_stats:
-            print(f"Found stats: {sport_stats}")
-            pokemons_you_can_beat = get_pokemons_you_can_beat(sport_stats)
-        else:
-            print("No stats found.")
-    percentage_beatable = (len(pokemons_you_can_beat) / 898) * 100
-    return render_template(
-        "index.html",
-        sport_stats=sport_stats,
-        pokemons_you_can_beat=pokemons_you_can_beat,
-        percentage_beatable=percentage_beatable
-
-    )
 
 
 def get_sport_stats(sport):
@@ -81,15 +44,10 @@ def get_pokemons_you_can_beat(sport_stats):
                 ]
             )
             if conditions_met >= 2:
-                image_filename = pokemon_name.lower() + '.png'
+                image_filename = pokemon_name.lower() + ".png"
                 if os.path.exists(os.path.join(POKEMON_IMAGES_DIR, image_filename)):
                     pokemons_you_can_beat.append(pokemon_name)
         return pokemons_you_can_beat
     except Exception as e:
         print(f"Error fetching data: {e}")
         return []
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
