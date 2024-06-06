@@ -14,18 +14,20 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/sport-stats', methods=['GET', 'POST'])
+@app.route("/sport-stats", methods=["GET", "POST"])
 def sport_stats():
     # Hvor får man dataen fra?!?!
-    form = SportStatsForm()
-    #if form.validate_on_submit():
-    sport_name = form.sport_name.data
+    # form = SportStatsForm()
+    # if form.validate_on_submit():
+    data = request.get_json()
+    sport_name = data.get("query", "")
+    # sport_name = form.sport_name.data
     print(sport_name)
-        
+
     sport_details = get_sport_stats(sport_name)
     print("now")
     print(sport_details)
-    return render_template('sport_stats.html', form=form, sport_details=None)
+    return render_template("sport_stats.html")
 
 
 @app.route("/query_sport", methods=["POST"])

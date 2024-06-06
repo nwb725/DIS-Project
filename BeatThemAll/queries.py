@@ -1,10 +1,11 @@
 from BeatThemAll import db_cursor, conn
+from BeatThemAll.forms import SportStatsForm
 
 
 def search_sport(query):
     sql = """
-    SELECT * FROM Sports
-    WHERE SPORT ILIKE %s
+    SELECT * FROM Sport_data
+    WHERE SPORT= %s
     LIMIT 1
     """
     db_cursor.execute(sql, ("%" + query + "%",))
@@ -21,6 +22,7 @@ def get_sport_details(sport_name):
     db_cursor.execute(sql, (sport_name,))
     sport_details = db_cursor.fetchone()
     return dict(sport_details) if sport_details else None
+
 
 def get_weaker_pokemon(sport_pk):
     sql = """"
@@ -53,6 +55,7 @@ def get_pokemon_stats(pokemon_pk):
     db_cursor.execute(sql, (pokemon_pk))
     conn.commit()
 
+
 def get_fastest_pokemon():
     sql = """
     SELECT pokemon_name, pokemon_speed
@@ -65,11 +68,12 @@ def get_fastest_pokemon():
     db_cursor.execute(sql)
     conn.commit()
 
+
 def get_sport_stats(sports_pk):
     sql = """
     SELECT * FROM Sports
-    WHERE sport_name = %s
+    WHERE SPORT = %s
     """
     db_cursor.execute(sql, (sports_pk,))
-    result = db_cursor.fetchone()
-    return result
+    sport_details = db_cursor.fetchone()
+    return dict(sport_details) if sport_details else None

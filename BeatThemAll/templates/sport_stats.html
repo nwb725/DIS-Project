@@ -1,40 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sport Stats</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Sport Stats</h1>
-        <form method="POST" action="{{ url_for('sport_stats') }}">
-            {{ form.hidden_tag() }}
-            <div>
-                {{ form.sport_name.label }} {{ form.sport_name(size=32) }}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="home">
+    <section class="home__hero">
+        <div class="hero__left">
+            <h1>
+                Did you ever wonder...
+            </h1>
+            <h2> "Which pokemon could I beat?"" </h2>
+            <p>
+                Now you can find out which pokemons you could beat, based on your athletic skill set.
+            </p>
+            <button class="button1" id="try-it-out-button">Try it out!</button>
+        </div>
+        <div class="hero__right">
+            <img src="{{ url_for('static', filename='images/pokemon2.png') }}" alt="ol" class="hero__img">
+        </div>
+    </section>
+
+    <section class="home__info">
+        <h2 class="home__title">
+            Usain Bolt VS. Zeraora
+        </h2>
+        <div class="info__item">
+            <div class="info__header">
+                <h3 class="info__name">Usain Bolt</h3>
             </div>
-            <div>
-                {{ form.submit() }}
+            <img src="{{ url_for('static', filename='images/usain.jpg') }}" alt="produce" class="hero__img__small">
+            <div class="info__text">
+                <h3>Speed 100%</h3>
+                <h3>Strength 90%</h3>
+                <h3>Durability 22%</h3>
             </div>
-        </form>
-        {% if sport_details %}
-            <div id="sport-details">
-                <h2>Sport Details:</h2>
-                <div>Sport Name: {{ sport_details.sport_name }}</div>
-                <div>Strength: {{ sport_details.strength }}</div>
-                <div>Speed: {{ sport_details.speed }}</div>
-                <div>Durability: {{ sport_details.durability }}</div>
-            </div>
-        {% endif %}
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul>
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-    </div>
-</body>
-</html>
+        </div>
+    </section>
+</div>
+
+<script>
+    document.getElementById("try-it-out-button").addEventListener("click", function () {
+        window.location.href = "{{ url_for('index') }}";
+    });
+</script>
+{% endblock %}

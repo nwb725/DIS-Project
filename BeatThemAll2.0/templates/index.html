@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Stats</title>
+</head>
+
+<body>
+    <h1>Search for a Sport</h1>
+    <form method="POST">
+        <label for="sport">Sport:</label>
+        <input type="text" id="sport" name="sport" required>
+        <button type="submit">Search</button>
+    </form>
+    {% if sport_stats %}
+    <h2>Stats for {{ sport }}:</h2>
+    <ul>
+        <li>Speed: {{ sport_stats.speed }} %</li>
+        <li>Strength: {{ sport_stats.strength }} %</li>
+        <li>Durability: {{ sport_stats.durability }} %</li>
+    </ul>
+    {% elif sport_stats is none %}
+    <p>No stats found for the sport "{{ request.form.sport }}"</p>
+    {% endif %}
+</body>
+
+</html>
