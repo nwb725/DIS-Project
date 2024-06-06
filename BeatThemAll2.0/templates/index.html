@@ -14,11 +14,17 @@
         <button type="submit">Search</button>
     </form>
     {% if sport_stats %}
-    <h2>Stats for {{ sport }}:</h2>
+    <h2>Your stats for {{ request.form.sport }} :</h2>
     <ul>
         <li>Speed: {{ sport_stats.speed }} %</li>
         <li>Strength: {{ sport_stats.strength }} %</li>
         <li>Durability: {{ sport_stats.durability }} %</li>
+    </ul>
+    <h2>Pokemons you could beat:</h2>
+    <ul>
+        {% for pokemon in pokemons_you_can_beat %}
+        <li>{{ pokemon }}</li>
+        {% endfor %}
     </ul>
     {% elif sport_stats is none %}
     <p>No stats found for the sport "{{ request.form.sport }}"</p>
