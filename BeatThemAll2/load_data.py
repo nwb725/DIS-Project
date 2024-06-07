@@ -4,7 +4,9 @@ import psycopg2
 DB_HOST = "localhost"
 DB_NAME = "BeatThemAll"
 DB_USER = "postgres"
-DB_PASS = "postgres"
+
+# Replace with relevant password
+DB_PASS = "Nns64qhg"
 
 sport_data = pd.read_csv("data/sport_data.csv")
 pokemon_data = pd.read_csv("data/pokemon_data.csv")
