@@ -1,5 +1,11 @@
 # DIS-Project
 
+
+# Directory
+Make sure you are in the right directory:
+
+    cd ../BeatThemAll2
+
 # Installing packages
 Start by running the following command to ensure the required packages are installed:
 
@@ -12,10 +18,9 @@ Using pgAdmin4 create a new database called BeatThemAll. Inside the file "load_d
 
 with the relevant password for the user that created the database. With this run one of the following commands:
 
-    python load_data.py
-    python3 load_data.py
+    'python load_data.py' or 'python3 load_data.py'
 
-This reads our datasets, creates tables in the database and inserts the read data into those tables. If the script is run succesfully the database is now ready.
+Depending on your machine, this reads our datasets, creates tables in the database and inserts the read data into those tables. If the script is run succesfully the database is now ready.
 
 # Running the server
 When all above is done correctly the server can be started by using the following command:
